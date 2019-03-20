@@ -77,8 +77,9 @@ def rename_images(grid_row, grid_column, grid_location):
                             is_incrementing = True
                             is_decrementing = False
                             continue
+        return "SUCCESS"
     else:
-        print("please check the grid size")
+        return "ERROR"
 
 
 def create_zip_file(path, ziph):
@@ -111,12 +112,24 @@ def main():
 
         print(secure_filename(grid_location.filename))
 
+        message = ''
+
+
         with zipfile.ZipFile(grid_location, "r") as zip_ref:
             zip_ref.printdir()
             print(zip_ref.infolist())
             if not(os.path.exists("static/"+grid_location.filename.split('.')[0])):
                 zip_ref.extractall("static/")
-            rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
+            message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
+
+        if(message=='ERROR'):
+            return render_template('WebVR_BuildingTour_FE.html',
+                                   message='The grid size does not match the number of images in the zip folder. Please check the grid size and resubmit.',
+                                   title=title,
+                                   email=email,
+                                   grid_row=grid_row,
+                                   grid_column=grid_column,
+                                   grid_location=grid_location)
 
         if request.form['submit_button'] == 'Preview':
             return render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
