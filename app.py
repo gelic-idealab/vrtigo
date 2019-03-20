@@ -16,7 +16,7 @@ image_list = []
 app = Flask(__name__)
 
 
-def rename_images(grid_row, grid_column, grid_location, image_type):
+def rename_images(grid_row, grid_column, grid_location):
     """
 
     :param grid_row:
@@ -30,32 +30,33 @@ def rename_images(grid_row, grid_column, grid_location, image_type):
     is_incrementing = True
     is_decrementing = False
     folderPath = 'static/'+grid_location
-    image_extentsion= '*.'+image_type
-    test_image_type=''
 
-    print(image_extentsion)
-    print(type(image_extentsion))
-    print(type(image_type))
-    print(len(fnmatch.filter(os.listdir(folderPath), image_extentsion)))
-    print('root, dirs, files', os.walk(folderPath))
-
+    image_type = ''
+    # print('root, dirs, files', os.walk(folderPath))
+    """
     for root, dirs, files in os.walk(folderPath):
         for filename in files:
             print(filename)
             if filename.endswith('.jpg'):
-                test_image_type = 'jpg'
+                image_type = 'jpg'
             elif filename.endswith('.png'):
-                test_image_type = 'png'
+                image_type = 'png'
             break
+    """
+    image_type = 'jpg'
 
-    print('test_image_type', test_image_type)
+    print('test_image_type', image_type)
+    image_extension = '*.' + image_type
+    print('image_extension=',image_extension)
+    print(os.listdir(folderPath))
+    print('number of images',len(fnmatch.filter(os.listdir(folderPath), image_extension)))
 
-    if int(grid_row)*int(grid_column) <= len(fnmatch.filter(os.listdir(folderPath), image_extentsion)):
+    if int(grid_row)*int(grid_column) <= len(fnmatch.filter(os.listdir(folderPath), image_extension)):
         if not(Path(folderPath+"/1_1."+image_type).is_file()):
-            for pathAndFilename in glob.iglob(os.path.join(folderPath, image_extentsion)):
+            for pathAndFilename in glob.iglob(os.path.join(folderPath, image_extension)):
                 title, ext = os.path.splitext(os.path.basename(pathAndFilename))
-                print(pathAndFilename)
-                print(title, ext)
+                print('path and file name',pathAndFilename)
+                print('Test title and ext',title, ext)
                 if row_counter <= int(grid_row):
                     if column_counter <= int(grid_column):
                         os.rename(pathAndFilename,
@@ -87,7 +88,7 @@ def create_zip_file(path, ziph):
         print('root',root)
         print('dirs',dirs)
         for file in files:
-            if (path == 'static/' and not file.endswith('zip')):
+            if path == 'static/' and not file.endswith('zip'):
                 ziph.write(os.path.join(root, file))
 
 
@@ -114,8 +115,8 @@ def main():
             zip_ref.printdir()
             print(zip_ref.infolist())
             if not(os.path.exists("static/"+grid_location.filename.split('.')[0])):
-                zip_ref.extractall("static/"+grid_location.filename.split('.')[0])
-                rename_images(grid_row, grid_column, grid_location.filename.split('.')[0], 'jpg')
+                zip_ref.extractall("static/")
+            rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
 
         if request.form['submit_button'] == 'Preview':
             return render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
@@ -151,4 +152,4 @@ if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.before_request(before_request)
-    app.run(debug=True, use_reloader =False)
+    app.run(debug=True, use_reloader = True)
