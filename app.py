@@ -6,7 +6,7 @@ Revision: 02/12/2019
 """
 import fnmatch
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
 from pathlib import Path
 from werkzeug.utils import secure_filename
 import zipfile
@@ -33,7 +33,7 @@ def rename_images(grid_row, grid_column, grid_location):
 
     image_type = ''
     # print('root, dirs, files', os.walk(folderPath))
-    """
+
     for root, dirs, files in os.walk(folderPath):
         for filename in files:
             print(filename)
@@ -42,8 +42,6 @@ def rename_images(grid_row, grid_column, grid_location):
             elif filename.endswith('.png'):
                 image_type = 'png'
             break
-    """
-    image_type = 'jpg'
 
     print('test_image_type', image_type)
     image_extension = '*.' + image_type
@@ -114,7 +112,6 @@ def main():
 
         message = ''
 
-
         with zipfile.ZipFile(grid_location, "r") as zip_ref:
             zip_ref.printdir()
             print(zip_ref.infolist())
@@ -122,7 +119,7 @@ def main():
                 zip_ref.extractall("static/")
             message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
 
-        if(message=='ERROR'):
+        if message == 'ERROR':
             return render_template('WebVR_BuildingTour_FE.html',
                                    message='The grid size does not match the number of images in the zip folder. Please check the grid size and resubmit.',
                                    title=title,
