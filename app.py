@@ -15,6 +15,7 @@ import glob, os
 image_list = []
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = 'dev'
 
 def rename_images(grid_row, grid_column, grid_location):
     """
@@ -45,10 +46,10 @@ def rename_images(grid_row, grid_column, grid_location):
     print('test_image_type', image_type)
     image_extension = '*.' + image_type
     print('image_extension=',image_extension)
-    #print(os.listdir(folderPath))
+    print(os.listdir(folderPath))
     print('number of images',len(fnmatch.filter(os.listdir(folderPath), image_extension)))
 
-    if int(grid_row)*int(grid_column) <= len(fnmatch.filter(os.listdir(folderPath), image_extension)):
+    if int(grid_row)*int(grid_column) == len(fnmatch.filter(os.listdir(folderPath), image_extension)):
         if not(Path(folderPath+"/1_1."+image_type).is_file()):
             for pathAndFilename in glob.iglob(os.path.join(folderPath, image_extension)):
                 title, ext = os.path.splitext(os.path.basename(pathAndFilename))
@@ -113,10 +114,11 @@ def main():
             zip_ref.printdir()
             print(zip_ref.infolist())
             if not(os.path.exists("static/"+grid_location.filename.split('.')[0])):
-                zip_ref.extractall(Path("static/"))
+                zip_ref.extractall(path='static/')
             message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
 
         if message == 'ERROR':
+            flash('error', category='danger')
             return render_template('WebVR_BuildingTour_FE.html',
                                    message='The grid size does not match the number of images in the zip folder. Please check the grid size and resubmit.',
                                    title=title,
