@@ -28,7 +28,6 @@ def rename_images(grid_row, grid_column, grid_location):
     row_counter = 1
     column_counter = 1
     is_incrementing = True
-    is_decrementing = False
     folderPath = 'static/'+grid_location
 
     image_type = ''
@@ -64,16 +63,14 @@ def rename_images(grid_row, grid_column, grid_location):
                             row_counter += 1
                         else:
                             column_counter += 1
-                            is_decrementing = True
                             is_incrementing = False
                             continue
-                    if is_decrementing:
+                    else:
                         if row_counter>1:
                             row_counter -= 1
                         else:
                             column_counter += 1
                             is_incrementing = True
-                            is_decrementing = False
                             continue
         return "SUCCESS"
     else:
@@ -116,7 +113,7 @@ def main():
             zip_ref.printdir()
             print(zip_ref.infolist())
             if not(os.path.exists("static/"+grid_location.filename.split('.')[0])):
-                zip_ref.extractall("static/")
+                zip_ref.extractall(Path("static/"))
             message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
 
         if message == 'ERROR':
