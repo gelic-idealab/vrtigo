@@ -28,7 +28,7 @@ def rename_images(grid_row, grid_column, grid_location):
     row_counter = 1
     column_counter = 1
     is_incrementing = True
-    folderPath = 'static/'+grid_location
+    folderPath = os.path.join('static', grid_location)
 
     image_type = ''
     # print('root, dirs, files', os.walk(folderPath))
@@ -45,7 +45,7 @@ def rename_images(grid_row, grid_column, grid_location):
     print('test_image_type', image_type)
     image_extension = '*.' + image_type
     print('image_extension=',image_extension)
-    print(os.listdir(folderPath))
+    #print(os.listdir(folderPath))
     print('number of images',len(fnmatch.filter(os.listdir(folderPath), image_extension)))
 
     if int(grid_row)*int(grid_column) <= len(fnmatch.filter(os.listdir(folderPath), image_extension)):
