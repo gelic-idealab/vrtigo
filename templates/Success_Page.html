@@ -5,7 +5,6 @@
     <title>Success Page </title>
 </head>
 <body>
-    <h1>Web VR Tour zip file successfully generated! Click <a href="{{ file_path }}" download="{{ file_name }}">here</a>!</h1>
-
+    {{ html_to_display | safe }}
 </body>
 </html>
