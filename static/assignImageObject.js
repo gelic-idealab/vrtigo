@@ -23,28 +23,28 @@ function loadImages(numberOfRows,numberOfColumns,fileLocation,image_type) {
             for(j=1; j<=numberOfRows; j++) {
                 img = 'static/'+fileLocation+"/"+j+"_"+i+"."+image_type;
                 if(i==1) {
-                    right=null;
-                } else {
-                    col_num=i-1;
-                    right=j+'_'+col_num;
-                }
-                if(i==numberOfColumns) {
-                    left=null;
-                } else {
-                    col_num=i+1;
-                    left=j+'_'+col_num;
-                }
-                if(j==1) {
                     backward=null;
                 } else {
+                    col_num=i-1;
+                    backward=j+'_'+col_num;
+                }
+                if(i==numberOfColumns) {
+                    forward=null;
+                } else {
+                    col_num=i+1;
+                    forward=j+'_'+col_num;
+                }
+                if(j==1) {
+                    left=null;
+                } else {
                     row_num=j-1;
-                    backward=row_num+'_'+i;
+                    left=row_num+'_'+i;
                 }
                 if(j==numberOfRows) {
-                    forward=null
+                    right=null
                 } else {
                     row_num=j+1;
-                    forward=row_num+'_'+i;
+                    right=row_num+'_'+i;
                 }
                 listOfFiles[j+'_'+i] = {img:img, left:left, right:right, backward: backward, forward:forward};
             }
@@ -55,6 +55,4 @@ function loadImages(numberOfRows,numberOfColumns,fileLocation,image_type) {
         current = start;
 
         document.getElementById('this-image').src = start.img;
-
-
   }
