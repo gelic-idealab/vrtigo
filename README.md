@@ -1,22 +1,19 @@
-# Project Title
-
-Virtual Tour Builder
+# VR Tour Generator
 
 ## Getting Started
 
-
 ### Prerequisites
 
-```
-Give examples
-```
-
-### Installing
 ```
 export FLASK_APP=vr-tour-generator
 export FLASK_ENV=development
 
 flask run
+```
+
+### Installing
+```
+pip install -r requirements.txt
 ```
 ## Deployment
 
