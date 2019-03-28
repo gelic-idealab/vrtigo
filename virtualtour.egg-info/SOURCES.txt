@@ -1,3 +1,4 @@
+MANIFEST.in
 setup.py
 virtualtour.egg-info/PKG-INFO
 virtualtour.egg-info/SOURCES.txt
