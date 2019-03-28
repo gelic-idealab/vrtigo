@@ -130,7 +130,8 @@ def main():
                                        grid_column=grid_column,
                                        grid_location=grid_location)
 
-        except:
+        except Exception as e:
+            print('Exception: ' + str(e))
             return render_template('Success_Page.html',
                                    html_to_display='<h1>There was an error extracting the zip file!</h1>',
                                    )
