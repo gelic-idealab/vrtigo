@@ -15,7 +15,16 @@
    <script src='static/setImage.js' type='text/javascript'></script>
 </head>
 <body onload='loadImages({{numberOfRows}},{{numberOfCol}},{{path|tojson}},{{image_type|tojson}})'>
-  <a-scene>
+
+  <style>
+  #EmbeddedScene {
+    width:800px;
+    height:600px;
+  }
+  </style>
+
+  <div id="EmbeddedScene">
+  <a-scene embedded="">
 
       <a-assets>
         <img id='arrow-thumb' crossorigin='anonymous' src='static/arrow.png'>
@@ -64,6 +73,7 @@
         <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link'   material='' line='' cursor='' geometry=''></a-cursor>
     </a-entity>
   </a-scene>
+</div>
 </body>
 </html>
 
