@@ -7,18 +7,17 @@ Virtual Tour Builder
 
 ### Prerequisites
 
-
 ```
 Give examples
 ```
 
 ### Installing
-
+```
 export FLASK_APP=vr-tour-generator
 export FLASK_ENV=development
 
 flask run
-
+```
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
