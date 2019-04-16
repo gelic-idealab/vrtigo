@@ -116,8 +116,8 @@ def main():
             with zipfile.ZipFile(grid_location, "r") as zip_ref:
                 zip_ref.printdir()
                 print(zip_ref.infolist())
-                if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
-                    zip_ref.extractall(path='static/')
+                # if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
+                zip_ref.extractall(path='static/')
                 message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
 
             if message == 'ERROR':

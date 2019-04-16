@@ -1,0 +1,8 @@
+TODO:
+
+- Move download button to preview page
+- Document python version == 3.5!!!!!!!!!!!!!
+- os.remove extracted folder
+- use bootstrap css
+- document photo taking process requirements
+- update requirements.txt with proper syntax

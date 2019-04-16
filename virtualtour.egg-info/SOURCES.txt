@@ -1,8 +1,0 @@
-MANIFEST.in
-setup.py
-virtualtour.egg-info/PKG-INFO
-virtualtour.egg-info/SOURCES.txt
-virtualtour.egg-info/dependency_links.txt
-virtualtour.egg-info/not-zip-safe
-virtualtour.egg-info/requires.txt
-virtualtour.egg-info/top_level.txt

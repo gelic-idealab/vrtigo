@@ -1,3 +1,0 @@
-graft vr-tour-generator/static
-graft vr-tour-generator/templates
-global-exclude *.pyc
