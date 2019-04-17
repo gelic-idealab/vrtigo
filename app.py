@@ -5,6 +5,7 @@ Description: Updates file names in the image folder updated and calls an app tha
 Revision: 03/27/2019
 """
 import fnmatch
+import shutil
 
 from flask import Flask, render_template, request, flash
 from pathlib import Path
@@ -15,8 +16,10 @@ import glob, os
 image_list = []
 app = Flask(__name__)
 
+
 app.config['SECRET_KEY'] = 'dev'
 
+temp_map = {}
 
 def rename_images(grid_row, grid_column, grid_location):
     """
@@ -96,74 +99,93 @@ def main():
 
     :return:
     """
+
     if request.method == 'POST':
         print('I am here')
+
         # Then get the data from the form
-        grid_row = request.form['grid_row']
-        grid_column = request.form['grid_column']
-        grid_location = request.files['grid_location']
-        print(grid_row, grid_column, grid_location)
-        title = request.form['title']
-        email = request.form['email']
-        print(grid_row, grid_column, grid_location, title, email)
 
-        print(secure_filename(grid_location.filename))
+        print('request',request)
+        print('request form', request.form)
 
-        message = ''
+        if request.form['submit_button'] == 'delete':
+            path = request.form['path']
+            print('path=', path)
+            # os.remove(os.path.join('static',path))
+            shutil.rmtree(os.path.join('static', path))
+            # os.remove(os.path.join('static', path+'_result.zip'))
+            os.unlink(os.path.join('static', path + '_result.zip'))
+            return render_template('WebVR_BuildingTour_FE.html')
+        else:
+            grid_row = request.form['grid_row']
+            grid_column = request.form['grid_column']
 
-        # os.path.join('static', grid_location)
-        try:
-            with zipfile.ZipFile(grid_location, "r") as zip_ref:
-                zip_ref.printdir()
-                print(zip_ref.infolist())
-                # if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
-                zip_ref.extractall(path='static/')
-                message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
+            title = request.form['title']
+            email = request.form['email']
 
-            if message == 'ERROR':
-                flash('The grid size does not match the number of images in the zip folder. '
-                      'Please check the grid size and resubmit.', category='danger')
-                return render_template('WebVR_BuildingTour_FE.html',
-                                       title=title,
-                                       email=email,
-                                       grid_row=grid_row,
-                                       grid_column=grid_column,
-                                       grid_location=grid_location)
+            message = ''
 
-        except Exception as e:
-            print('Exception: ' + str(e))
-            return render_template('Success_Page.html',
-                                   html_to_display='<h1>There was an error extracting the zip file!</h1>',
-                                   )
+            if request.form['submit_button'] == 'Preview':
+                grid_location = request.files['grid_location']
+                print(grid_row, grid_column, grid_location)
+                try:
+                    with zipfile.ZipFile(grid_location, "r") as zip_ref:
+                        zip_ref.printdir()
+                        print(zip_ref.infolist())
+                        if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
+                            zip_ref.extractall(path='static/')
+                        message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
 
-        if request.form['submit_button'] == 'Preview':
-            return render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
-                                   path=''+str(grid_location.filename.split('.')[0]), image_type=str('jpg'))
+                    if message == 'ERROR':
+                        flash('The grid size does not match the number of images in the zip folder. '
+                              'Please check the grid size and resubmit.', category='danger')
+                        return render_template('WebVR_BuildingTour_FE.html',
+                                               title=title,
+                                               email=email,
+                                               grid_row=grid_row,
+                                               grid_column=grid_column,
+                                               grid_location=grid_location)
 
-        elif request.form['submit_button'] == 'Download':
-            try:
-                zipf = zipfile.ZipFile('static/'+grid_location.filename.split('.')[0]+'_result.zip', 'w', zipfile.ZIP_DEFLATED)
-                create_zip_file('static/', zipf)
-                html = render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
-                                       path=''+str(grid_location.filename.split('.')[0]), image_type=str('jpg'))
-                html_file = open(os.path.join('static','generated_html_'+str(grid_location.filename.split('.')[0])+'.html'),"w")
-                html_file.write(html)
-                html_file.close()
-                zipf.write(os.path.join('static','generated_html_'+str(grid_location.filename.split('.')[0])+'.html'), 'generated_html_'+str(grid_location.filename.split('.')[0])+'.html')
-                zipf.close()
+                except Exception as e:
+                    print('Exception: ' + str(e))
+                    return render_template('Success_Page.html', category = 'danger',
+                                           html_to_display='<h1>There was an error extracting the zip file!</h1>',
+                                           )
 
-                file_path = request.url_root + 'static/' + grid_location.filename.split('.')[0] + '_result.zip'
-                file_name = grid_location.filename.split('.')[0] + '_result'
+                return render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
+                                       path=''+str(grid_location.filename.split('.')[0]), image_type=str('jpg'),
+                                       title=title, email=email)
 
-                return render_template('Success_Page.html',
-                                       html_to_display='<h1>Web VR Tour zip file successfully generated! '
-                                                       'Click <a href="'+file_path+'" '
-                                                       'download="'+ file_name + '">here</a>!</h1>',
-                                       )
-            except:
-                return render_template('Success_Page.html',
-                                       html_to_display='<h1>There was an error generating the zip file!</h1>',
-                                       )
+            elif request.form['submit_button'] == 'Download':
+                print("I am in download")
+                grid_location = request.form['grid_location']
+                filename = grid_location
+                try:
+                    zipf = zipfile.ZipFile('static/'+filename+'_result.zip', 'w', zipfile.ZIP_DEFLATED)
+                    create_zip_file('static/', zipf)
+                    html = render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
+                                           path=''+str(filename), image_type=str('jpg'))
+                    html_file = open(os.path.join('static','generated_html_'+str(filename)+'.html'),"w")
+                    html_file.write(html)
+                    html_file.close()
+                    zipf.write(os.path.join('static','generated_html_'+str(filename)+'.html'), 'generated_html_'+str(filename)+'.html')
+                    zipf.close()
+
+                    file_path = request.url_root + 'static/' + grid_location + '_result.zip'
+                    file_name = filename + '_result'
+
+                    return render_template('index2.html', category = 'success', numberOfRows=grid_row, numberOfCol=grid_column,
+                                           path=filename, image_type=str('jpg'),
+                                           title=title, email=email,
+                                           html_to_display='<h1>Web VR Tour zip file successfully generated! '
+                                                           'Click <a id="message" href="'+file_path+'" '
+                                                           'download="'+file_name+'">here</a> to download!</h1>'
+                                           )
+
+                except Exception as e:
+                    return render_template('Success_Page.html', category = 'danger',
+                                           html_to_display='<h1>There was an error generating the zip file!</h1>',
+                                           )
     else:
         return render_template('WebVR_BuildingTour_FE.html')
 
@@ -176,4 +198,5 @@ if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
     app.before_request(before_request)
+    temp_map={}
     app.run(debug=True, use_reloader = True)

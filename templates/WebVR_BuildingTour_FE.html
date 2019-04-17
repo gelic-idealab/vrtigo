@@ -34,7 +34,7 @@
     {% if messages %}
     <ul class=flashes>
     {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">{{ message }}</alert>
+      <div class="alert alert-{{ category }}">{{ message }}</div>
     {% endfor %}
     </ul>
     {% endif %}
@@ -82,7 +82,7 @@
     </div>
         </div>
     <input type="submit" name="submit_button" value="Preview">
-    <input type="submit" name="submit_button" value="Download"> <br><br>
+    <br><br>
 </div>
 </form>
 </body>
