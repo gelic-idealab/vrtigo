@@ -1,12 +1,6 @@
-Libraries Imported:
-------------------
-from flask import Flask, render_template, request
-from pathlib import Path
-from werkzeug.utils import secure_filename
-import zipfile
-import glob, os
-
-Libraries to be installed:
--------------------------
-1. pip install Flask
-2. pip install zipFile
+Click==7.0
+Flask==1.0.2
+itsdangerous==1.1.0
+Jinja2==2.10
+MarkupSafe==1.1.1
+Werkzeug==0.15.1
