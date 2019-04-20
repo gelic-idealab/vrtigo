@@ -1,8 +1,8 @@
 TODO:
 
-- bounce user back to start after download
-- os.remove generated html & .zip package
-- create index3.html for package output (no form input info)
-- use bootstrap css to improve UX
-- document photo taking process requirements
+- bounce user back to start after download (DONE)
+- os.remove generated html & .zip package (DONE)
+- create index3.html for package output (no form input info) (DONE)
+- use bootstrap css to improve UX (please suggest)
+- document photo taking process requirements (Will do it on Monday)
 

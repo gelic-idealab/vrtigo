@@ -93,6 +93,12 @@ def create_zip_file(path, ziph):
                 ziph.write(os.path.join(root, file))
 
 
+@app.route("/web_vr", methods=['GET', 'POST'])
+def web_vr_page():
+    print('I am somehow here')
+    return render_template('WebVR_BuildingTour_FE.html')
+
+
 @app.route("/", methods=['GET', 'POST'])
 def main():
     """
@@ -111,10 +117,9 @@ def main():
         if request.form['submit_button'] == 'delete':
             path = request.form['path']
             print('path=', path)
-            # os.remove(os.path.join('static',path))
             shutil.rmtree(os.path.join('static', path))
-            # os.remove(os.path.join('static', path+'_result.zip'))
             os.unlink(os.path.join('static', path + '_result.zip'))
+            os.unlink(os.path.join('static', 'generated_html_'+path + '.html'))
             return render_template('WebVR_BuildingTour_FE.html')
         else:
             grid_row = request.form['grid_row']
@@ -163,7 +168,7 @@ def main():
                 try:
                     zipf = zipfile.ZipFile('static/'+filename+'_result.zip', 'w', zipfile.ZIP_DEFLATED)
                     create_zip_file('static/', zipf)
-                    html = render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
+                    html = render_template('index3.html', numberOfRows=grid_row, numberOfCol=grid_column,
                                            path=''+str(filename), image_type=str('jpg'))
                     html_file = open(os.path.join('static','generated_html_'+str(filename)+'.html'),"w")
                     html_file.write(html)

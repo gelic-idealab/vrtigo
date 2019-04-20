@@ -18,59 +18,11 @@
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
-
-
-    <script type=text/javascript>
-        $(function() {
-          $('a#message').bind('click', function() {
-            console.log('I am here!');
-             var href = this.href;
-             var download = this.download;
-            event.preventDefault();
-            window.location = href;
-            console.log('download='+download);
-            console.log('href='+href)
-            console.log($('input[name="grid_location"]').val());
-            setTimeout(function(){
-                $.post('/', {
-                    path: $('input[name="grid_location"]').val(),
-                    submit_button: 'delete'
-                  }, function(data, status, jqXHR){
-                }, 'json');
-                setTimeout(function () {
-                   window.location = $('a#redirect_home').attr('href');
-                },3000);
-            },3000);
-            return false;
-          });
-        });
-</script>
-
 </head>
 <body onload='loadImages({{numberOfRows}},{{numberOfCol}},{{path|tojson}},{{image_type|tojson}})'>
-<a id="redirect_home" href="{{ url_for('web_vr_page') }}" style="display:none"></a>
+<!--<a id="redirect_home" href="{{ url_for('main') }}" style="display:none"/>-->
 
 
-<style>
-#EmbeddedScene {
-height:600px;
-}
-input[readonly='readonly'] {
-      background-color: rgb(235, 235, 228);
-}
-</style>
-<br>
-<div class="row">
-    <div class="container">
-    <ul class=flashes>
-      <div class="alert alert-{{ category }}">{{ html_to_display | safe }}</div>
-    </ul>
-</div>
-</div>
-<br>
-<div class="row">
-    <div class="col-sm">
-  <div id="EmbeddedScene">
 <a-scene embedded="">
 
   <a-assets>
@@ -120,51 +72,6 @@ input[readonly='readonly'] {
     <a-cursor id='cursor' animation__click='property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150' animation__fusing='property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500' event-set__1='_event: mouseenter; color: springgreen' event-set__2='_event: mouseleave; color: black' fuse='true' raycaster='objects: .link'   material='' line='' cursor='' geometry=''></a-cursor>
 </a-entity>
 </a-scene>
-  </div>
-        </div>
-  <div class="col-sm">
-<form method="POST" enctype=multipart/form-data>
-<div class="container" style="border:1px solid; padding:10px">
-<h2><centre>Your inputs:</centre></h2>
-  <div class="row">
-      <div class="col-sm">
-    <div class="form-group">
-        <label for="title">Title:</label><br>
-        <input type="text" name="title" id="title" value="{{ request.form.title }}" readonly="readonly"/><br>
-    </div>
-      </div>
-      <div class="col-sm">
-    <div class="form-group">
-        <label for="email">Email:</label><br>
-        <input type="text" name="email" id="email" value="{{ request.form.email }}" readonly="readonly"><br>
-    </div>
-      </div>
-      <div class="col-sm">
-    <div class="form-group">
-        <label for="file">Upload a photo zip file:</label><br>
-        <input type="text" name="grid_location" id="file" required="required" value="{{ path }}" readonly="readonly"><br>
-    </div>
-      </div>
-      </div>
-    <div class="row">
-        <div class="form-group col-sm">
-            <label for="rows">Rows:</label><br>
-            <input type="text" name="grid_row" id="rows" required="required" value="{{numberOfRows}}" readonly="readonly"><br>
-        </div>
-        <div class="form-group col-sm">
-            <label for="columns">Columns:</label><br>
-            <input type="text" name="grid_column" id="columns" required="required" value="{{numberOfCol}}" readonly="readonly"><br>
-        </div>
-        <div class="form-group col-sm"></div>
-    </div>
-
-    <br><br>
-    <input type="submit" name="submit_button" value="Download"> <br><br>
-  </div>
-</form>
-  </div>
-  </div>
 
 </body>
 </html>
-
