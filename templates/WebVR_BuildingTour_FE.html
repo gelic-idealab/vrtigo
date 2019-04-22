@@ -25,6 +25,11 @@
         $( window ).on( "load", function() {
             if(window.location.href.includes('web_vr')) {
                 window.location = window.location.href.replace('web_vr','');
+            } else {
+                $.get('/', {
+                    path: $('input[name="grid_location"]').val()
+                }, function (data, status, jqXHR) {
+                }, 'json');
             }
         });
     </script>

@@ -31,15 +31,8 @@
             console.log('download='+download);
             console.log('href='+href)
             console.log($('input[name="grid_location"]').val());
-            setTimeout(function(){
-                $.post('/', {
-                    path: $('input[name="grid_location"]').val(),
-                    submit_button: 'delete'
-                  }, function(data, status, jqXHR){
-                }, 'json');
-                setTimeout(function () {
+            setTimeout(function () {
                    window.location = $('a#redirect_home').attr('href');
-                },3000);
             },3000);
             return false;
           });

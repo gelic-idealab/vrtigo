@@ -169,11 +169,11 @@ def main():
                     zipf = zipfile.ZipFile('static/'+filename+'_result.zip', 'w', zipfile.ZIP_DEFLATED)
                     create_zip_file('static/', zipf)
                     html = render_template('index3.html', numberOfRows=grid_row, numberOfCol=grid_column,
-                                           path=''+str(filename), image_type=str('jpg'))
-                    html_file = open(os.path.join('static','generated_html_'+str(filename)+'.html'),"w")
+                                           path=''+str(filename), image_type=str('jpg'), title=''+str(title))
+                    html_file = open(os.path.join('static', 'index.html'), "w")
                     html_file.write(html)
                     html_file.close()
-                    zipf.write(os.path.join('static','generated_html_'+str(filename)+'.html'), 'generated_html_'+str(filename)+'.html')
+                    zipf.write(os.path.join('static','index.html'), 'index.html')
                     zipf.close()
 
                     file_path = request.url_root + 'static/' + grid_location + '_result.zip'
@@ -192,6 +192,16 @@ def main():
                                            html_to_display='<h1>There was an error generating the zip file!</h1>',
                                            )
     else:
+        for file in os.listdir(os.fsencode('static')):
+            filename = os.fsdecode(file)
+            print('filename=', filename)
+            if filename.find('arrow.png')<0 and filename.find('assignImageObject.js')<0 and filename.find('setImage.js')<0:
+                path=filename
+                if os.path.exists(os.path.join('static', path)):
+                    if path.find('.zip')>=0 or path.find('.html')>=0:
+                        os.unlink(os.path.join('static', path ))
+                    else:
+                        shutil.rmtree(os.path.join('static', path))
         return render_template('WebVR_BuildingTour_FE.html')
 
 
