@@ -1,8 +1,9 @@
 TODO:
 
-- bounce user back to start after download (DONE)
-- os.remove generated html & .zip package (DONE)
-- create index3.html for package output (no form input info) (DONE)
+- use title input for page title
+- Rename downloaded html to index.html for hosting purposes
+- Remove html from static folder in download package
+- Clean up naming conventions 
 - use bootstrap css to improve UX (please suggest)
 - document photo taking process requirements (Will do it on Monday)
 
