@@ -4,6 +4,7 @@ TODO:
 - Rename downloaded html to index.html for hosting purposes
 - Remove html from static folder in download package
 - Clean up naming conventions 
+- exported tour not working
 - use bootstrap css to improve UX (please suggest)
 - document photo taking process requirements (Will do it on Monday)
 
