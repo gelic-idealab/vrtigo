@@ -1,10 +1,7 @@
 TODO:
 
-- use title input for page title (DONE)
-- Rename downloaded html to index.html for hosting purposes (DONE)
-- Remove html from static folder in download package (DONE)
 - Clean up naming conventions 
-- exported tour not working (DONE)
-- use bootstrap css to improve UX (please suggest)
+- use bootstrap css to improve UX (in progress)
+- test deployment on cpanel
 - document photo taking process requirements
 
