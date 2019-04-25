@@ -50,15 +50,15 @@ def rename_images(grid_row, grid_column, grid_location):
     image_extension = '*.' + image_type
     number_of_images_in_extracted_zip = len(fnmatch.filter(os.listdir(folderPath), image_extension))
     print('image_extension=',image_extension)
-    print(os.listdir(folderPath))
+    # print(os.listdir(folderPath))
     print('number of images',number_of_images_in_extracted_zip)
 
     if int(grid_row)*int(grid_column) == number_of_images_in_extracted_zip:
         if not(Path(folderPath+"/1_1."+image_type).is_file()):
             for pathAndFilename in glob.iglob(os.path.join(folderPath, image_extension)):
                 title, ext = os.path.splitext(os.path.basename(pathAndFilename))
-                print('path and file name',pathAndFilename)
-                print('Test title and ext',title, ext)
+                # print('path and file name',pathAndFilename)
+                # print('Test title and ext',title, ext)
                 if row_counter <= int(grid_row):
                     if column_counter <= int(grid_column):
                         os.rename(pathAndFilename,
@@ -84,7 +84,7 @@ def rename_images(grid_row, grid_column, grid_location):
 
 def create_zip_file(path, ziph):
     # write code here to get zip file
-    print('root, dirs, files',os.walk(path))
+    # print('root, dirs, files',os.walk(path))
     for root, dirs, files in os.walk(path):
         print('root',root)
         print('dirs',dirs)
@@ -132,11 +132,11 @@ def main():
 
             if request.form['submit_button'] == 'Preview':
                 grid_location = request.files['grid_location']
-                print(grid_row, grid_column, grid_location)
+                # print(grid_row, grid_column, grid_location)
                 try:
                     with zipfile.ZipFile(grid_location, "r") as zip_ref:
-                        zip_ref.printdir()
-                        print(zip_ref.infolist())
+                        # zip_ref.printdir()
+                        # print(zip_ref.infolist())
                         if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
                             zip_ref.extractall(path='static/')
                         message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
@@ -162,7 +162,7 @@ def main():
                                        title=title, email=email)
 
             elif request.form['submit_button'] == 'Download':
-                print("I am in download")
+                # print("I am in download")
                 grid_location = request.form['grid_location']
                 filename = grid_location
                 try:
