@@ -46,12 +46,12 @@ def rename_images(grid_row, grid_column, grid_location):
                 image_type = 'png'
             break
 
-    print('test_image_type', image_type)
+    # print('test_image_type', image_type)
     image_extension = '*.' + image_type
     number_of_images_in_extracted_zip = len(fnmatch.filter(os.listdir(folderPath), image_extension))
-    print('image_extension=',image_extension)
+    # print('image_extension=',image_extension)
     # print(os.listdir(folderPath))
-    print('number of images',number_of_images_in_extracted_zip)
+    # print('number of images',number_of_images_in_extracted_zip)
 
     if int(grid_row)*int(grid_column) == number_of_images_in_extracted_zip:
         if not(Path(folderPath+"/1_1."+image_type).is_file()):
@@ -86,8 +86,8 @@ def create_zip_file(path, ziph):
     # write code here to get zip file
     # print('root, dirs, files',os.walk(path))
     for root, dirs, files in os.walk(path):
-        print('root',root)
-        print('dirs',dirs)
+        # print('root',root)
+        # print('dirs',dirs)
         for file in files:
             if path == 'static/' and not file.endswith('zip'):
                 ziph.write(os.path.join(root, file))
@@ -95,7 +95,7 @@ def create_zip_file(path, ziph):
 
 @app.route("/web_vr", methods=['GET', 'POST'])
 def web_vr_page():
-    print('I am somehow here')
+    # print('I am somehow here')
     return render_template('WebVR_BuildingTour_FE.html')
 
 
@@ -107,20 +107,34 @@ def main():
     """
 
     if request.method == 'POST':
-        print('I am here')
+        # print('I am here')
 
         # Then get the data from the form
 
-        print('request',request)
-        print('request form', request.form)
+        # print('request',request)
+        # print('request form', request.form)
 
         if request.form['submit_button'] == 'delete':
+            for file in os.listdir(os.fsencode('static')):
+                filename = os.fsdecode(file)
+                # print('filename=', filename)
+                if filename.find('arrow.png') < 0 and filename.find('assignImageObject.js') < 0 and filename.find(
+                        'setImage.js') < 0:
+                    path = filename
+                    if os.path.exists(os.path.join('static', path)):
+                        if path.find('.zip') >= 0 or path.find('.html') >= 0:
+                            os.unlink(os.path.join('static', path))
+                        else:
+                            shutil.rmtree(os.path.join('static', path))
+            return render_template('WebVR_BuildingTour_FE.html')
+            """
             path = request.form['path']
             print('path=', path)
             shutil.rmtree(os.path.join('static', path))
             os.unlink(os.path.join('static', path + '_result.zip'))
             os.unlink(os.path.join('static', 'generated_html_'+path + '.html'))
             return render_template('WebVR_BuildingTour_FE.html')
+            """
         else:
             grid_row = request.form['grid_row']
             grid_column = request.form['grid_column']
@@ -132,11 +146,11 @@ def main():
 
             if request.form['submit_button'] == 'Preview':
                 grid_location = request.files['grid_location']
-                # print(grid_row, grid_column, grid_location)
+                print(grid_row, grid_column, grid_location)
                 try:
                     with zipfile.ZipFile(grid_location, "r") as zip_ref:
-                        # zip_ref.printdir()
-                        # print(zip_ref.infolist())
+                        zip_ref.printdir()
+                        print(zip_ref.infolist())
                         if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
                             zip_ref.extractall(path='static/')
                         message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
@@ -152,7 +166,7 @@ def main():
                                                grid_location=grid_location)
 
                 except Exception as e:
-                    print('Exception: ' + str(e))
+                    # print('Exception: ' + str(e))
                     return render_template('Success_Page.html', category = 'danger',
                                            html_to_display='<h1>There was an error extracting the zip file!</h1>',
                                            )
@@ -192,16 +206,6 @@ def main():
                                            html_to_display='<h1>There was an error generating the zip file!</h1>',
                                            )
     else:
-        for file in os.listdir(os.fsencode('static')):
-            filename = os.fsdecode(file)
-            print('filename=', filename)
-            if filename.find('arrow.png')<0 and filename.find('assignImageObject.js')<0 and filename.find('setImage.js')<0:
-                path=filename
-                if os.path.exists(os.path.join('static', path)):
-                    if path.find('.zip')>=0 or path.find('.html')>=0:
-                        os.unlink(os.path.join('static', path ))
-                    else:
-                        shutil.rmtree(os.path.join('static', path))
         return render_template('WebVR_BuildingTour_FE.html')
 
 

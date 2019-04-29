@@ -32,10 +32,19 @@
             console.log('href='+href)
             console.log($('input[name="grid_location"]').val());
             setTimeout(function () {
-                   window.location = $('a#redirect_home').attr('href');
-            },3000);
+                $.ajax('/', { data: { path: $('input[name="grid_location"]').val(), submit_button: 'delete' },
+                    type: "POST",
+                    error: function() {
+                        alert("error");
+                    },
+                    success: function(data) {
+                        window.location = $('a#redirect_home').attr('href');
+                    }
+                });
             return false;
+            },5000);
           });
+
         });
 </script>
 
