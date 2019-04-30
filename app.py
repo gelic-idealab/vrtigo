@@ -146,11 +146,11 @@ def main():
 
             if request.form['submit_button'] == 'Preview':
                 grid_location = request.files['grid_location']
-                print(grid_row, grid_column, grid_location)
+                # print(grid_row, grid_column, grid_location)
                 try:
                     with zipfile.ZipFile(grid_location, "r") as zip_ref:
-                        zip_ref.printdir()
-                        print(zip_ref.infolist())
+                        # zip_ref.printdir()
+                        # print(zip_ref.infolist())
                         if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
                             zip_ref.extractall(path='static/')
                         message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
@@ -166,7 +166,7 @@ def main():
                                                grid_location=grid_location)
 
                 except Exception as e:
-                    # print('Exception: ' + str(e))
+                    print('Exception: ' + str(e))
                     return render_template('Success_Page.html', category = 'danger',
                                            html_to_display='<h1>There was an error extracting the zip file!</h1>',
                                            )
