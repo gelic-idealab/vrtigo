@@ -1,13 +1,10 @@
 TODO:
 
-- don't delete everything on get (DONE)
-- create unique folder name per session based on id (maybe use tempfile see below) (NOT NEEDED)
-- clean up on download based on session id (NOT NEEDED)
+- create unique folder name per session based on id (maybe use tempfile see below) (IN PROGRESS)
+- clean up on download based on session id (IN PROGRESS)
 - Clean up naming conventions (in progress) 
-- use bootstrap css to improve UX (in progress)
 - test deployment on cpanel (Deployed original code in cpanel - yet to deploy the latest changes)
-- document photo taking process requirements (in progress)
-
+- move session id into request context
 
 
 @app.route('/')

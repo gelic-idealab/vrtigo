@@ -7,10 +7,11 @@ Revision: 03/27/2019
 import fnmatch
 import shutil
 
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session
 from pathlib import Path
 from werkzeug.utils import secure_filename
 import zipfile
+import tempfile
 import glob, os
 
 image_list = []
@@ -21,7 +22,12 @@ app.config['SECRET_KEY'] = 'dev'
 
 temp_map = {}
 
-def rename_images(grid_row, grid_column, grid_location):
+session_dir = tempfile.TemporaryDirectory(dir='static').name
+print(session_dir)
+
+
+
+def rename_images(grid_row, grid_column, file_dir):
     """
 
     :param grid_row:
@@ -32,12 +38,15 @@ def rename_images(grid_row, grid_column, grid_location):
     row_counter = 1
     column_counter = 1
     is_incrementing = True
-    folderPath = os.path.join('static', grid_location)
 
     image_type = ''
     # print('root, dirs, files', os.walk(folderPath))
 
-    for root, dirs, files in os.walk(folderPath):
+    full_session_path = os.path.join(session_dir, file_dir)
+    print(full_session_path)
+
+    for root, dirs, files in os.walk(full_session_path):
+        
         for filename in files:
             print(filename)
             if filename.endswith('.jpg'):
@@ -48,21 +57,21 @@ def rename_images(grid_row, grid_column, grid_location):
 
     # print('test_image_type', image_type)
     image_extension = '*.' + image_type
-    number_of_images_in_extracted_zip = len(fnmatch.filter(os.listdir(folderPath), image_extension))
+    number_of_images_in_extracted_zip = len(fnmatch.filter(os.listdir(full_session_path), image_extension))
     # print('image_extension=',image_extension)
-    # print(os.listdir(folderPath))
+    # print(os.listdir(session_dir))
     # print('number of images',number_of_images_in_extracted_zip)
 
     if int(grid_row)*int(grid_column) == number_of_images_in_extracted_zip:
-        if not(Path(folderPath+"/1_1."+image_type).is_file()):
-            for pathAndFilename in glob.iglob(os.path.join(folderPath, image_extension)):
+        if not(Path(session_dir+"/1_1."+image_type).is_file()):
+            for pathAndFilename in glob.iglob(os.path.join(full_session_path, image_extension)):
                 title, ext = os.path.splitext(os.path.basename(pathAndFilename))
                 # print('path and file name',pathAndFilename)
                 # print('Test title and ext',title, ext)
                 if row_counter <= int(grid_row):
                     if column_counter <= int(grid_column):
                         os.rename(pathAndFilename,
-                                  os.path.join(folderPath, str(row_counter) + '_' + str(column_counter) + ext))
+                                  os.path.join(full_session_path, str(row_counter) + '_' + str(column_counter) + ext))
                     if is_incrementing:
                         if row_counter<int(grid_row):
                             row_counter += 1
@@ -105,6 +114,8 @@ def main():
 
     :return:
     """
+    session['id'] = session_id
+    print(session)
 
     if request.method == 'POST':
         # print('I am here')
@@ -142,18 +153,21 @@ def main():
             title = request.form['title']
             email = request.form['email']
 
+            
+            
             message = ''
 
             if request.form['submit_button'] == 'Preview':
                 grid_location = request.files['grid_location']
                 # print(grid_row, grid_column, grid_location)
+                file_dir = grid_location.filename.split('.')[0]
                 try:
                     with zipfile.ZipFile(grid_location, "r") as zip_ref:
                         # zip_ref.printdir()
                         # print(zip_ref.infolist())
-                        if not(os.path.exists(os.path.join('static', grid_location.filename.split('.')[0]))):
-                            zip_ref.extractall(path='static/')
-                        message += rename_images(grid_row, grid_column, grid_location.filename.split('.')[0])
+                        if not(os.path.exists(session_dir)):
+                            zip_ref.extractall(path=session_dir)
+                        message += rename_images(grid_row, grid_column, file_dir)
 
                     if message == 'ERROR':
                         flash('The grid size does not match the number of images in the zip folder. '
@@ -163,7 +177,7 @@ def main():
                                                email=email,
                                                grid_row=grid_row,
                                                grid_column=grid_column,
-                                               grid_location=grid_location)
+                                               grid_location=os.path.join(session_dir, file_dir))
 
                 except Exception as e:
                     print('Exception: ' + str(e))
@@ -172,7 +186,7 @@ def main():
                                            )
 
                 return render_template('index2.html', numberOfRows=grid_row, numberOfCol=grid_column,
-                                       path=''+str(grid_location.filename.split('.')[0]), image_type=str('jpg'),
+                                       path=os.path.join(session_dir, file_dir), image_type=str('jpg'),
                                        title=title, email=email)
 
             elif request.form['submit_button'] == 'Download':
@@ -180,17 +194,17 @@ def main():
                 grid_location = request.form['grid_location']
                 filename = grid_location
                 try:
-                    zipf = zipfile.ZipFile('static/'+filename+'_result.zip', 'w', zipfile.ZIP_DEFLATED)
+                    zipf = zipfile.ZipFile('static/'+session_id+'_result.zip', 'w', zipfile.ZIP_DEFLATED)
                     create_zip_file('static/', zipf)
                     html = render_template('index3.html', numberOfRows=grid_row, numberOfCol=grid_column,
                                            path=''+str(filename), image_type=str('jpg'), title=''+str(title))
-                    html_file = open(os.path.join('static', 'index.html'), "w")
+                    html_file = open(os.path.join('static', 'index_'+session_id+'.html'), "w")
                     html_file.write(html)
                     html_file.close()
-                    zipf.write(os.path.join('static','index.html'), 'index.html')
+                    zipf.write(os.path.join('static','index_'+session_id+'.html'), 'index.html')
                     zipf.close()
 
-                    file_path = request.url_root + 'static/' + grid_location + '_result.zip'
+                    file_path = request.url_root + 'static/' + session_id + '_result.zip'
                     file_name = filename + '_result'
 
                     return render_template('index2.html', category = 'success', numberOfRows=grid_row, numberOfCol=grid_column,
