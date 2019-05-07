@@ -114,8 +114,8 @@ def main():
 
     :return:
     """
-    session['id'] = session_id
-    print(session)
+    session_id = os.path.split(session_dir)[1]
+    print(session_id)
 
     if request.method == 'POST':
         # print('I am here')
