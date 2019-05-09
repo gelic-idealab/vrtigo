@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<style>
+<!-- <style>
     .grid-container {
       display: grid;
       grid-template-columns: auto auto auto;
@@ -20,7 +20,7 @@
       font-size: 30px;
       text-align: center;
     }
-</style>
+</style> -->
     <script>
         $( window ).on( "load", function() {
             if(window.location.href.includes('web_vr')) {
@@ -34,11 +34,18 @@
 
 <title>{{ title }}</title>
 
+<div class="container mt-3">
 <form method="POST" enctype=multipart/form-data>
-    <br><br>
-<div class="container" style="border:1px solid;">
-<h2><centre>Create VR tour</centre></h2>
 <div class="container">
+    <div class="jumbotron" align="center">
+            <h1 class="display-3" align="center">VR Tour Generator</h1>
+            <p class="lead" align="center"> Use this form to create a VR Tour from a directory of 360 photos. Please make sure to follow the directions.</p>
+            <hr class="my-4">
+            <p>This tool was created by the Grainger Engineering Library IDEA Lab as part of the Immersive Scholars Grant.</p>
+            <br>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+
+    </div>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     <ul class=flashes>
@@ -49,40 +56,44 @@
     {% endif %}
     {% endwith %}
     {% block body %}{% endblock %}
-</div>
-    <div class="row">
-    <div class="col-sm">
-        <div class="form-group">
-            <label for="title">Title:</label><br>
-            <input type="text" name="title" id="title" value="{{ title }}"/><br>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label><br>
-            <input type="email" name="email" id="email" value="{{ email }}"><br>
-        </div>
-        <div class="form-group">
-            <label for="file">Upload a photo zip file:</label><br>
-            <input type="file" name="grid_location" id="file" required="required" value="{{ grid_location }}"><br>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm">
-                <label for="rows">Rows:</label><br>
-                <input type="text" name="grid_row" id="rows" required="required" value="{{ grid_row }}"><br>
-            </div>
-            <div class="form-group col-sm">
-                <label for="columns">Columns:</label><br>
-                <input type="text" name="grid_column" id="columns" required="required" value="{{ grid_column }}"><br>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm">
-        <!--<div>Please follow the below path while taking pictures.</div><br>-->
 
-    </div>
+    <div class="row">
+        <div class="col-sm">
+        <div class="form-group input-group-lg">
+            <label class="lead" for="title">Title:</label><br>
+            <input type="text" class="form-control" name="title" required="required" id="title" value="{{ title }}"/>
         </div>
-    <input type="submit" name="submit_button" value="Preview">
-    <br><br>
+        </div>
+        <div class="col-sm">
+        <div class="form-group input-group-lg">
+            <label class="lead" for="email">Email:</label><br>
+            <input type="email" class="form-control" name="email" required="required" id="email" value="{{ email }}">
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group input-group-lg">
+                <label class="lead" for="rows">Rows:</label>
+                <input type="text" class="form-control" name="grid_row" id="rows" required="required" value="{{ grid_row }}">
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="form-group input-group-lg">
+                <label class="lead" for="columns">Columns:</label>
+                <input type="text" class="form-control" name="grid_column" id="columns" required="required" value="{{ grid_column }}">
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="form-group input-group-lg">
+                <label class="lead" for="file">Upload a photo zip file:</label>
+                <input type="file" class="form-control-file" name="grid_location" id="file" required="required" value="{{ grid_location }}">
+            </div>
+        </div>
+        </div>
+    <input type="submit" class="btn btn-primary btn-lg btn-block" name="submit_button" value="Preview">
 </div>
 </form>
+</div>
 </body>
 </html>
