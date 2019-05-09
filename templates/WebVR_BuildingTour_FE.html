@@ -25,13 +25,9 @@
         $( window ).on( "load", function() {
             if(window.location.href.includes('web_vr')) {
                 window.location = window.location.href.replace('web_vr','');
-            } else {
-                /*$.get('/', {
-                    path: $('input[name="grid_location"]').val()
-                }, function (data, status, jqXHR) {
-                }, 'json');*/
             }
         });
+
     </script>
 </head>
 <body>
@@ -62,7 +58,7 @@
         </div>
         <div class="form-group">
             <label for="email">Email:</label><br>
-            <input type="text" name="email" id="email" value="{{ email }}"><br>
+            <input type="email" name="email" id="email" value="{{ email }}"><br>
         </div>
         <div class="form-group">
             <label for="file">Upload a photo zip file:</label><br>
@@ -80,18 +76,8 @@
         </div>
     </div>
     <div class="col-sm">
-        <div>Please follow the below path while taking pictures.</div><br>
-        <div class="grid-container">
-            <div class="grid-item">1</div>
-            <div class="grid-item">6</div>
-            <div class="grid-item">7</div>
-            <div class="grid-item">2</div>
-            <div class="grid-item">5</div>
-            <div class="grid-item">8</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
-            <div class="grid-item">9</div>
-        </div>
+        <!--<div>Please follow the below path while taking pictures.</div><br>-->
+
     </div>
         </div>
     <input type="submit" name="submit_button" value="Preview">

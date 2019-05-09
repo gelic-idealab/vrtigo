@@ -1,8 +1,8 @@
 TODO:
 
-- create unique folder name per session based on id (maybe use tempfile see below) (IN PROGRESS)
-- clean up on download based on session id (IN PROGRESS)
-- Clean up naming conventions (in progress) 
+- create unique folder name per session based on id (maybe use tempfile see below) (Done)
+- clean up on download based on session id (Done)
+- Clean up naming conventions (Done)
 - test deployment on cpanel (Deployed original code in cpanel - yet to deploy the latest changes)
 - move session id into request context
 
