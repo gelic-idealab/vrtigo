@@ -1,19 +1,18 @@
 # VR Tour Generator
 
-## Getting Started
+![Upload form](./form.png)
 
 ### Prerequisites
 
 ```
-export FLASK_APP=vr-tour-generator
-export FLASK_ENV=development
+Python 3.5
+pipenv
 
-flask run
 ```
 
 ### Installing
 ```
-pip install -r requirements.txt
+pipenv install
 ```
 ## Deployment
 
