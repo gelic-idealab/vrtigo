@@ -4,3 +4,4 @@ __pycache__/*
 *.zip
 static_assets/*
 app_1.py
+session_tracker
