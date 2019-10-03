@@ -1,7 +1,7 @@
-static/*
-__pycache__/*
+static
+__pycache__
 .vscode
 *.zip
-static_assets/*
+static_assets
 app_1.py
-session_tracker
+session_tracker.json

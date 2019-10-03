@@ -1,0 +1,941 @@
+<!DOCTYPE html><html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0" data-name="viewport" name="viewport"><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"><link href="https://webservices.illinois.edu/webservices/styles/app/blog/styles-css-reset.css?rn=0920T144844" property="stylesheet" rel="stylesheet" type="text/css"><script type="text/javascript">var isWizard = true;</script>
+
+
+    
+<title>vrtigo - UIUC Library</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+    <script>
+        $( window ).on( "load", function() {
+            if(window.location.href.includes('web_vr')) {
+                window.location = window.location.href.replace('web_vr','');
+            }
+        });
+
+    </script>
+    
+    <script type="text/javascript">
+    var isHeaderImage = '1100';
+    if(isHeaderImage != '0')
+    {
+        isHeaderImage = 'true';
+    }
+    else
+    {
+        isHeaderImage = 'false';
+    }
+</script><style type="text/css">
+    body
+
+
+    {
+        background-color:#EEEEEE;
+    }
+    #custom-form-name{ display:none; }
+    #container
+    {
+        
+        border:1px solid #D6D9DB;
+        box-shadow: 0 3px 10px -3px #666666, 0 3px 10px -10px #666666 ;
+        background-color:white;
+        margin:auto;
+        
+                max-width:1100px;
+            
+    }
+    #header
+    {
+        
+    }
+    #header img
+    {
+        border:0;
+        border-bottom:1px solid #FFFFFF;
+    
+        width: 100%;
+        vertical-align: top;
+    }
+    #content_legacy h1
+    {
+        color:#48484A;
+        font-family:'Open Sans', Helvetica, Arial, sans-serif;
+        font-size:32px;
+        font-weight:700;
+        line-height:36px;
+        margin-top:24px;
+        margin-bottom:24px;
+    }
+    #content_legacy
+    {
+        padding: 24px 40px;
+        color:#48484A;
+        font-family:'Open Sans', Helvetica, Arial, sans-serif;
+        font-size:16px;
+        line-height:22px;
+    }
+    #content_legacy a
+    {
+        color:#13294B
+    ;text-decoration:underline;
+    }
+    #content_legacy a:hover
+    {
+        color:#4E5E78
+    ;text-decoration:underline;
+    }
+    #content-and-sidebar,  #content-full-width
+    {
+        color:#48484A;
+        font-family:'Open Sans', Helvetica, Arial, sans-serif;
+        font-size:16px;
+    }
+    #footer
+    {
+        border-top:0px solid #FFFFFF;
+        margin:auto;
+        width: auto;
+        text-align:center;
+        background-color:#48484A;
+        padding: 40px;
+        color:#E2E3E4;
+        font-family:'Open Sans', Helvetica, Arial, sans-serif;
+    }
+    #footer a{
+        color:#E2E3E4
+    ;text-decoration:underline;
+    }
+    #footer a:hover, #footer a:focus:hover, #footer a:active:hover
+    {
+        color:#E2E3E4
+    !important;text-decoration:underline !important;
+        background-color: transparent !important;
+        outline:none !important;
+    }
+    #footer p, #footer li
+    {
+        color:#E2E3E4;
+    }
+    #footer img
+    {
+        border:0;
+    }
+    #fc 
+    {
+        font-size:95%;
+    }
+
+    /* Form WIDTHS */
+    #ws-pa #edu-il #form-wrapper .ws-legend,
+    #ws-pa #edu-il #form-wrapper .ws-legend .wrap {
+        width: 100%;
+    }
+    
+    
+    /* Hide mobile header */
+    #mb-header { display: none !important; }
+    
+    
+    #edu-il #uc-ws #cal-wrapper #cal-body .event-list-info {
+        width: auto !important;
+    }
+    #edu-il #uc-ws #cal-wrapper ol.full-list li.odd-item,
+    #edu-il #uc-ws #cal-wrapper ol.full-list li.even-item {
+        box-sizing: border-box;
+        float: left;
+        width: 100% !important;
+    }
+    #edu-il #uc-ws #cal-wrapper #cal-body h1 {
+        clear: left;
+    }
+    #edu-il #uc-ws #cal-wrapper #search-wrapper-top {
+        width: 300px;
+    }
+    #edu-il #uc-ws #cal-wrapper #cal-tabs ul#info-top {
+        float: right;
+        left: auto;
+        top: auto !important;
+    }
+    #edu-il #uc-ws #cal-wrapper #cal-body {
+        width: 100%;
+    }
+    #edu-il #uc-ws #cal-wrapper {
+        width: 100%;
+        margin-top: 45px !important;
+    }
+    #edu-il #uc-ws #cal-wrapper #cal-content {
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    #edu-il #uc-ws #cal-wrapper #grid-table th {
+        width: 2%;
+    }
+    #edu-il #uc-ws #cal-wrapper #grid-table td {
+        min-width: 12%
+    }
+</style> <style type="text/css" rel="stylesheet" id="ws-style"></style><script type="text/javascript">
+    var skinColor1 = 'FFFF66';
+    var skinColor2 = '6666CC';
+    var appUiColor = '#224A88';
+    var contentLinkColor = '#13294B';
+    if (typeof parent.applyColors == 'function') { 
+        parent.applyColors(skinColor1, skinColor2);
+    }
+    
+    var navigationLinks = new Array();
+    </script><style type="text/css">
+    
+    #menu-items li a,
+    .toggle-view button.selected,
+    .toggle-view button.selected:hover,
+    #timeframe-chooser:hover,
+    #ws-calendar-container.summary-view h2,
+    #ws-calendar-container.list-view h2,
+    #ws-calendar-container.grid-view h2,
+    #btn-search.selected,
+    #btn-search.selected:hover,
+    #btn-show-recurring.toggle-on,
+    #btn-show-recurring.toggle-on:hover,
+    #btn-show-recurring.toggle-off, 
+    input.small-btn,
+    #ws-calendar-container.detail-view .back-btn,
+    #ws-calendar-container.grid-view .event-meta .date,
+    #ws-sidebar .more-button,
+    #ws-sidebar .sidebar-panel,
+    #ws-sidebar .modal-menu h4,
+    .standard-btn,
+    .standard-btn.light
+    {
+    /* use RGB value */
+    background-color: rgb(34, 74, 136);
+    }
+    
+    #ws-calendar-container.list-view .location:after,
+    #ws-calendar-container.summary-view .location:after {
+    /* use RGB value */
+    color: rgb(34, 74, 136);
+    }
+    
+    #time-options li a {
+        /* calculate 50% tint? */
+        background-color: rgb(145, 165, 196);
+    }
+    
+    #time-options li a:hover,
+    #ws-sidebar .sidebar-panel {
+        /* calculate 70% tint? */
+        background-color: rgb(189, 201, 219);
+    }
+    
+                
+    #uofi #ws-pa #edu-il .blog-archive a:active .circle, #uofi #ws-pa #edu-il .blog-archive a:focus:hover .circle {
+        background-color: #13294B;
+    }    
+    #uofi #ws-pa #edu-il #blog-wrapper
+    {
+        background-color: #FFFFFF
+    }
+    #ws-calendar-container #ws-calendar-content .entry.recurring-event .title a:before {
+    background-color: #13294B !important;
+    }
+    #uofi #ws-pa #edu-il a
+    {
+        color: #13294B;
+        
+        text-decoration: underline;
+        border:0;
+        margin:0;
+        padding:0;
+    }
+    #uofi #ws-pa #edu-il a:hover
+    {
+    color: #4E5E78;
+        
+        text-decoration: underline;
+        border:0;
+        margin:0;
+        padding:0;
+    }
+    #uofi #ws-pa #edu-il p,            
+    #uofi #ws-pa #edu-il span,
+    #uofi #ws-pa #edu-il dd,
+    #uofi #ws-pa #edu-il td,
+    #uofi #ws-pa #edu-il li 
+    {
+        color: #48484A;
+        font-size: 16px;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    }
+    
+    
+    #uofi #ws-pa #edu-il #blog-article-view .blog-post
+    {
+        padding: 30px;                    
+
+    }
+    #uofi #ws-pa #edu-il .blog-post-entry{
+        padding: 30px;
+        margin: 10px;
+    }
+
+    #uofi #ws-pa #edu-il #blog-home-view .blog-post-entry,
+    #uofi #ws-pa #edu-il #blog-results-view .blog-post-entry
+    {
+        background-color: transparent;
+    border:none;
+    }
+    
+    #uofi #ws-pa #edu-il #blog-home-view .blog-post-entry-1col,
+    #uofi #ws-pa #edu-il #blog-results-view .blog-post-entry-1col 
+    {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 0;
+        margin-right: 0;
+                            
+                padding: 30px;
+            
+    }
+    #uofi #ws-pa #edu-il #blog-home-view .blog-post-entry-2col, #blog-home-view .blog-post-entry-3col
+    {        
+        
+                margin: 10px;                    
+            
+        padding: 30px;
+    }
+    #uofi #ws-pa #edu-il .blog-post-category a, 
+    #uofi #ws-pa #edu-il .blog-post-category a:hover,
+    #uofi #ws-pa #edu-il .blog-post-tag a,
+    #uofi #ws-pa #edu-il .blog-post-tag a:hover
+    {
+        text-decoration:none;
+    }
+    
+
+        
+     
+    #uofi #ws-pa #edu-il .blog-profile .gadget-header 
+    {
+        display: ;
+    }
+    #uofi #ws-pa #edu-il .gadget 
+    {
+        margin:0 0 30px 0; 
+    }
+    #uofi #ws-pa #edu-il .blog-gadget
+    {
+        padding: 10px;
+        background-color: transparent;
+    }
+    #uofi #ws-pa #edu-il h3.gadget-header
+    {
+        
+                border-bottom: 1px solid #D6D9DB;
+            
+        color: #224A88;
+        font-size: 14px;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        background-color: #F7F7F7;
+        
+                padding: 10px;
+            
+        text-transform: capitalize;
+    }
+    
+    
+    
+    #uofi #ws-pa #edu-il #blog-navigation .blog-pagination-button 
+    {
+        text-transform: capitalize;
+    }
+
+    
+        #uofi #ws-pa #edu-il .gadget 
+        {
+            border-width: 1px;
+            border-color: #D6D9DB;
+            border-style:solid;
+        }
+    
+        
+    #uofi #ws-pa #edu-il .column-layout-2 #blog-home-view,
+    #uofi #ws-pa #edu-il .column-layout-3 #blog-home-view
+    {
+        padding: 0 20px;
+    }
+
+            
+
+    #uofi #ws-pa #edu-il .gadget-header{
+        margin: -10px -10px 10px;
+    }
+
+    
+    
+    #uofi #ws-pa #edu-il .blog-categories a, 
+    #uofi #ws-pa #edu-il .blog-post-category a{
+        border-width: 1px;
+        border-style: solid;
+        border-color:#224A88;
+        color: #224A88;
+        background-color: #FFFFFF;
+        
+                text-transform:uppercase;
+            
+    }
+    #uofi #ws-pa #edu-il .blog-tags a{
+        border-width: 1px;
+        border-style: solid;
+        background-color: #224A88;
+        color: #FFFFFF;
+        border-color: #FFFFFF;
+        
+                text-transform:uppercase;
+            
+    }
+    #uofi #ws-pa #edu-il .blog-categories a:hover, 
+    #uofi #ws-pa #edu-il .blog-post-category a:hover, 
+    #uofi #ws-pa #edu-il .blog-categories a:focus:hover, 
+    #uofi #ws-pa #edu-il .blog-categories a:active:hover,
+    #uofi #ws-pa #edu-il #ws-content .blog-post-category a:active:hover, 
+    #uofi #ws-pa #edu-il #ws-content .blog-post-category a:focus:hover
+    {
+        border-color: #13294B !important;
+        background-color: #13294B !important;
+        outline:none !important;
+        color:#ffffff !important;
+    }
+    #uofi #ws-pa #edu-il .blog-tags a:hover, #uofi #ws-pa #edu-il .blog-tags a:focus:hover,
+    #uofi #ws-pa #edu-il .blog-tags a:active:hover
+    {
+        color:#FFFFFF !important;
+        background-color: #13294B !important;
+        border-color: #13294B !important;
+        outline:none !important;
+        color:#ffffff !important;
+        }
+    .circle, .year span.circle {
+        background-color: #13294B;
+    }
+
+    
+    #uofi #ws-pa #edu-il #blog-article-view .blog-post-title{
+        color: #48484A;
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    
+    #uofi #ws-pa #edu-il .blog-features{
+        background-color: transparent;
+    }
+    #uofi #ws-pa #edu-il .blog-closing-section a
+    {
+        color: #48484A;          
+         
+        text-decoration: none; 
+    }
+    #uofi #ws-pa #edu-il .blog-closing-section a:hover, #uofi #ws-pa #edu-il .blog-closing-section a:focus:hover,
+    #uofi #ws-pa #edu-il .blog-closing-section a:active:hover
+    
+    {
+        color: #000000 !important; 
+        
+        text-decoration: none !important; 
+        background-color: transparent !important;
+        outline:none !important;
+    }
+    
+    
+    #uofi #ws-pa #edu-il #blog-level-menu li.nav-menu:focus, 
+    #uofi #ws-pa #edu-il #blog-level-menu li.nav-menu.active, 
+    #uofi #ws-pa #edu-il #blog-level-menu li.nav-menu.active:hover, 
+    #uofi #ws-pa #edu-il #blog-level-menu li.nav-menu.active:focus, 
+    #uofi #ws-pa #edu-il #blog-level-menu li.nav-menu.active:focus:hover,
+    #uofi #ws-pa #edu-il #blog-level-menu li ul,
+    #uofi #ws-pa #edu-il .mobile-nav ul {
+        background-color: #224A88;
+    }
+    #uofi #ws-pa #edu-il #blog-level-menu li.nav-menu.active > .arrow-up,
+    #uofi #ws-pa #edu-il .mobile-nav .arrow-up {
+        border-bottom: 10px solid #224A88;
+    }
+    #uofi #ws-pa #edu-il #search-bar.close-search input[type="text"], 
+    #uofi #ws-pa #edu-il #search-bar.close-search input[type="text"]:focus, 
+    #uofi #ws-pa #edu-il #search-bar.open-search input[type="text"], 
+    #uofi #ws-pa #edu-il #search-bar.open-search input[type="text"]:focus {
+        border: 1px solid #224A88;
+    }
+    #uofi #ws-pa #edu-il #search-bar.open-search button:before {
+        color: #224A88;
+    }
+    
+    #jrw{
+    
+    }
+    
+    #uofi #ws-pa #edu-il .blog-post-footer, 
+    #uofi #ws-pa #edu-il .paging-menu-top a, 
+    #uofi #ws-pa #edu-il .search-results-menu
+    {
+        background-color: #224A88;
+    }
+    #uofi #ws-pa #edu-il .paging-menu-bottom, #uofi #ws-pa #edu-il .paging-menu-top
+    {
+        border-color: #224A88;
+    }
+    #uofi #ws-pa #edu-il .blog-post-comment-text i,
+    #uofi #ws-pa #edu-il .paging-menu-top a:hover, 
+    #uofi #ws-pa #edu-il .paging-menu-top a:focus:hover, 
+    #uofi #ws-pa #edu-il .paging-menu-top a:active:hover
+    
+    {
+        color: #224A88 !important;
+    }      
+    
+    #uofi #ws-pa #edu-il .blog-post-footer a, 
+    #uofi #ws-pa #edu-il .blog-post-footer li, 
+    #uofi #ws-pa #edu-il .paging-menu-top a 
+    {
+        color: ######;
+    }
+    #uofi #ws-pa #edu-il .blog-post-footer a:hover
+    {
+        color: ######;
+    }
+    #uofi #ws-pa #edu-il .blog-post-meta, 
+    #uofi #ws-pa #edu-il .blog-post-footer, 
+    #uofi #ws-pa #edu-il .blog-closing-section, 
+    #uofi #ws-pa #edu-il .blog-post-comments-section .reply-post
+    {
+        
+        text-transform: uppercase;
+    }        
+
+    
+    #uofi #ws-pa #edu-il .paging-menu-top {
+        margin-top:  -30px;
+        margin-left: -30px;
+        padding-left: 60px;
+    }
+     
+        
+    
+    #uofi #ws-pa #edu-il #blog-title a,
+    #uofi #ws-pa #edu-il #blog-title a:hover
+    {
+        color: #48484A;
+        text-decoration:none;
+    }
+    #uofi #ws-pa #edu-il div.title
+    {
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        color: #48484A;
+        font-size:32px;
+    }
+    #uofi #ws-pa #edu-il .blog-description {
+    color: #48484A;
+    }
+    #uofi #ws-pa #edu-il #blog-wrapper
+    {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;            
+    }
+    #ws-pa #edu-il #blog-header
+    {
+        background-color: #003366;
+        
+        padding: 20px 0;
+        
+    }
+    
+    #uofi #ws-pa #edu-il #blog-level-menu a, #uofi #ws-pa #edu-il #search-bar button, #uofi #ws-pa #edu-il #blog-level-menu li
+    {
+        color: #48484A;
+        
+        text-transform: uppercase;
+    }
+    #uofi #ws-pa #edu-il #blog-level-menu a:hover, 
+    #uofi #ws-pa #edu-il #blog-level-menu a:focus:hover, 
+    #uofi #ws-pa #edu-il #blog-level-menu a:active:hover,
+    #uofi #ws-pa #edu-il #search-bar button:hover, 
+    #uofi #ws-pa #edu-il #search-bar button:focus:hover, 
+    #uofi #ws-pa #edu-il #search-bar button:active:hover
+    {
+        color: #767676 !important;  
+        
+        text-decoration:none !important;
+        background: transparent !important;
+        outline:none !important;
+    }        
+    #uofi #ws-pa #edu-il .blog-post-comments-section
+    {
+        padding: 20px;
+    }    
+        
+            .blog-post-comment-wrapper
+            {
+                padding:10px 0 0;
+                border-color: #D6D9DB;
+                border-width: 1px 0 0;
+                border-style: solid;
+            }
+        
+
+    
+    
+    
+    body.design-1-scroll #uofi #ws-pa #edu-il .blog-post-entry:hover .scroll-container + .share-bar, 
+    body.design-1-scroll #uofi #ws-pa #edu-il .share-bar:hover 
+    {
+        bottom: 30px;
+        left: 30px;
+        right: 30px;
+        background-color:  #13294B;
+    }
+
+    html.touch #uofi #ws-pa #edu-il .blog-post-entry:hover .scroll-container + .share-bar, 
+    html.touch #uofi #ws-pa #edu-il .share-bar 
+    {
+        background-color:  #13294B !important;
+    }
+    
+    #uofi #ws-pa #edu-il #blog-home-view .blog-post-title,
+    #uofi #ws-pa #edu-il #blog-results-view .blog-post-title
+    {
+        font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        font-weight: 600;
+        font-size:18px;
+    }
+    #uofi #ws-pa #edu-il #blog-home-view .blog-post-title a,
+    #uofi #ws-pa #edu-il #blog-results-view .blog-post-title a
+    {
+        color: #13294B;
+        
+                text-decoration: none;
+            
+    }
+    #uofi #ws-pa #edu-il #blog-home-view .blog-post-title a:hover,
+    #uofi #ws-pa #edu-il #blog-results-view .blog-post-title a:hover
+    {
+        color: #13294B;
+        
+                text-decoration: underline;
+            
+    }
+    #uofi #ws-pa #edu-il .comments-closed 
+    {
+        background-color: #224A88;
+    }
+    
+    
+    /* Directory Profile Wizard Skin Styles */
+    
+    #wizard .profile-wrapper {
+        box-sizing: border-box;
+        width: 95%; 
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+    
+    #wizard .profile-wrapper *, 
+    #wizard .profile-wrapper::before, 
+    #wizard .profile-wrapper::after {
+        box-sizing: inherit;
+    }
+    
+    #wizard .profile-wrapper .profile-photo {
+        width: 40%;       
+        min-width: 300px;
+        float: left;
+        margin-top: 11px;          
+    }
+    
+    #wizard .profile-wrapper .profile {
+        width: 60%;
+        float: left;
+        line-height: 1.5;
+    }
+    
+    /* Hide H1, "address" H3 */
+    #wizard .profile-wrapper .profile > h3 {
+        position: absolute;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+    }
+    
+    #wizard .profile-wrapper .profile .role {
+        margin-bottom: 1rem;
+    }
+    
+    #wizard .profile-wrapper .profile .categories h3 {
+        margin-top: 1.5em;
+        margin-bottom: 0.25em;
+    }
+    
+    #wizard .profile-wrapper .profile .categories p {
+        margin-bottom: 1.5rem;
+    }
+    
+    #wizard .profile-wrapper .profile .categories ul,
+    #wizard .profile-wrapper .profile .categories ol {
+        display: block;
+        list-style-type: disc;
+        margin-top: 0;
+        margin-bottom: 1em;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 1rem;
+    }
+    
+    #wizard .profile-wrapper .profile .categories ol {
+        list-style-type: decimal;
+    }
+    
+    #wizard .profile-wrapper .profile-photo img {
+        max-width: 100%;
+        margin-bottom: 3rem;
+        margin-left: 10px;
+        box-shadow: 0 0 0 10px #F4F4F2, 0 0 0 11px #E0E0E0;
+    }
+    
+    #wizard .profile-wrapper .container::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    #wizard .profile-wrapper .profile-details .address {
+        margin-bottom: 1rem;
+    }
+    
+    @media only screen and (max-width: 960px) {
+        #wizard .profile-wrapper .profile {
+            width: 100%;
+        }           
+    }
+    
+    @media only screen and (max-width: 520px) {
+        #wizard .profile-wrapper .profile-photo img {
+            width: 200px;
+            height: auto;
+        }
+    }
+    
+    #wizard .profile-wrapper .breadcrumbs {
+        margin: 0 0 1rem 0;
+        padding-bottom: 2rem;
+    }
+    
+    #wizard .profile-wrapper .breadcrumbs ul {
+        list-style-type: none;
+    }
+    
+    #wizard .profile-wrapper .breadcrumbs li {
+        float: left; 
+        margin-bottom: 0;
+        font-size: 0.75rem;
+        cursor: default;
+        text-transform: uppercase;
+    }
+    
+       #wizard .profile-wrapper .breadcrumbs li:not(:last-child)::after {
+        position: relative;
+        margin: 0 0.75rem;
+        opacity: 1;
+        content: "/";
+        color: #cacaca;
+    }
+    
+    #wizard .directory-widget-heading {
+        width: 95%;
+        margin: 2rem auto 0 auto;
+    }
+    
+    @media only screen and (max-width: 520px) {
+        #wizard .directory-widget-heading {
+            font-size:  24px;
+        }
+    }
+    
+    #wizard .profile-wrapper .function-icons {
+        margin: 1rem 0 2rem 0;
+        text-align: right;
+    }
+    
+    @media only screen and (max-width: 960px) {
+        #wizard .profile-wrapper .function-icons {
+            margin-bottom: 1rem;
+            text-align: left;
+        }           
+    }
+    
+    #wizard .profile-wrapper .function-icons .fa {
+        font-size: 22px;
+    }
+    
+    #wizard .profile-wrapper .function-icons a:last-of-type {
+        display: none;
+    }
+    #wizard .profile-wrapper .profile-editors {
+        margin-top: -1rem;
+        margin-bottom: 1rem;
+        padding: 1.5rem;
+        background-color: #f8f8f8;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+    }
+    
+    #wizard .profile-wrapper .profile-editors h2 {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+    }
+    
+    @media only screen and (max-width: 960px) {
+        #wizard .profile-wrapper .profile-editors {
+            margin-top: 0;
+        }           
+    }
+    #wizard .profile-wrapper .sm-employee {
+        margin: 1rem 0;
+    }
+    
+    #wizard .profile-wrapper .sm-item {
+        display: inline-block;
+        line-height: 1.7;
+    }
+    
+    #wizard .profile-wrapper .sm-item [class*="fa-"] {
+        font-size: 2rem;
+        text-align: left;
+    }
+    
+</style>
+        <style type="text/css">
+            
+            /*
+             *  Calendar overrides for wizard skins 
+             */
+            #edu-il #uc-ws #cal-wrapper #cal-body .odd-item,
+            #edu-il #uc-ws #cal-wrapper #cal-body .even-item{
+            position: relative;
+            }
+            #edu-il #uc-ws #cal-wrapper #cal-body .event-time{
+            left: 12px;
+            xxxposition: absolute;
+            top: 4px;
+            }
+            #edu-il #uc-ws #cal-wrapper #cal-body .event-list-info{
+            margin-left: 150px;
+            }
+            @media only screen and (max-width : 700px)
+            {
+            #edu-il #uc-ws #cal-wrapper #cal-body .event-time{
+            left: 0;
+            position: relative;
+            top: 0;
+            }
+            #edu-il #uc-ws #cal-wrapper #cal-body .event-list-info{
+            margin-left: 0;
+            }
+            }
+            
+            /*
+              * Map overrides for wizard skins
+              */
+            #ws #app #map_canvas{
+            xxxheight: 690px;
+            }
+            #wizard #container,
+            #wizard #container #content_legacy,
+            #wizard #container #content_legacy #app{
+            xxxheight: auto !important;
+            }</style></head><body id="wizard">
+                <div id="container"><div aria-labelledby="hc" id="header" role="banner"><img alt="Illinois Library Header" id="hc" src="https://skins.webservices.illinois.edu/files/34239/wizard_header.png?iIndex=0920T144844" style="border:0;"></div>
+                <div id="content_legacy" style="min-height:20vh;">
+                    <div aria-labelledby="mc" id="app" role="main">
+                    
+                            {% block content %}{% endblock %}
+
+                </div></div>
+                    
+                    <footer aria-labelledby="fc" id="footer" role="contentinfo"><div id="fc"><p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">Grainger Engineering Library IDEA Lab</p></div></footer></div><script type="text/javascript">
+            var currentUrl = "" + window.location;
+            if(currentUrl.indexOf('scale=true') > -1)
+            {
+                var containerElement = document.querySelector("#container");
+                if(currentUrl.indexOf('headerimage=true') > -1)
+                {
+                    var maxWidth = '800px';
+                }
+                else
+                {
+                    var maxWidth = window.getComputedStyle(containerElement, null).getPropertyValue("max-width");
+                }
+                var borderLeftWidth = window.getComputedStyle(containerElement, null).getPropertyValue("border-left-width");
+                var borderRightWidth = window.getComputedStyle(containerElement, null).getPropertyValue("border-right-width");
+                var maxWidthNumeric = Number(maxWidth.split('px')[0]);
+                var borderLeftWidthNumeric = Number(borderLeftWidth.split('px')[0]);
+                var borderRightWidthNumeric = Number(borderRightWidth.split('px')[0]);
+                var totalCalculatedWidth = maxWidthNumeric + borderLeftWidthNumeric + borderRightWidthNumeric;
+                var containerAdjustedWidth = totalCalculatedWidth
+                var iframeWidth = Number(450);
+                var zoomFactor = Number(iframeWidth / totalCalculatedWidth);
+                var htmlElement = document.querySelector("html");
+                    htmlElement.style.overflow = 'hidden';
+                document.getElementById('container').style.width = maxWidth;
+                if(currentUrl.indexOf('headerimage=true') > -1)
+                {
+                    document.getElementById('container').style.maxWidth = 'none';
+                }
+                document.getElementsByTagName('body')[0].style.transform = 'scale(' + zoomFactor + ')';
+                document.getElementsByTagName('body')[0].style.transformOrigin = 'left top 0';
+            }
+            if(currentUrl.indexOf('/map/') > -1)
+            {                        
+                function calcMap()
+                {
+                    window.onload = function()
+                    {                                
+                        document.body.insertBefore(document.getElementById('header'), document.getElementById('container'));
+                        document.body.insertBefore(document.getElementById('footer'), document.getElementById('container').nextSibling);
+                        
+                        var container_max_width = window.getComputedStyle(document.getElementById('container'), null).getPropertyValue("max-width").split("px")[0];
+                        var container_border_width = window.getComputedStyle(document.getElementById('container'), null).getPropertyValue("border-top-width");
+                        var container_border_style = window.getComputedStyle(document.getElementById('container'), null).getPropertyValue("border-top-style");
+                        var container_border_color = window.getComputedStyle(document.getElementById('container'), null).getPropertyValue("border-top-color");
+                        var container_border = container_border_width + " " + container_border_style + " " + container_border_color;
+                        var footer_side_padding = window.getComputedStyle(document.getElementById('footer'), null).getPropertyValue("padding-left").split("px")[0];
+                        
+                        document.body.style.maxWidth = container_max_width + 'px';
+                        document.body.style.margin = 'auto';
+                        document.getElementById('container').style.border = 'none';
+                        document.getElementById('header').style.borderBottom = container_border;
+                        document.getElementById('footer').style.maxWidth = '94%';
+                        document.getElementById('footer').style.borderTop = container_border;
+                    }
+                }
+                calcMap();
+            }   
+            
+            if(currentUrl.indexOf('/ds/') > -1)
+            {                        
+                if(currentUrl.indexOf('skinId=17663') > -1)
+                {
+                    document.getElementById('mc').innerHTML = 'System Offices Directory';
+                }
+            }               
+            
+        </script></body></html>

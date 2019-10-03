@@ -1,39 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Web VR Building Tour</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<!-- <style>
-    .grid-container {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      background-color: #2196F3;
-      padding: 10px;
-    }
-    .grid-item {
-      background-color: rgba(255, 255, 255, 0.8);
-      border: 1px solid rgba(0, 0, 0, 0.8);
-      padding: 20px;
-      font-size: 30px;
-      text-align: center;
-    }
-</style> -->
-    <script>
-        $( window ).on( "load", function() {
-            if(window.location.href.includes('web_vr')) {
-                window.location = window.location.href.replace('web_vr','');
-            }
-        });
 
-    </script>
 </head>
+
+
+{% extends 'base.html' %}
+{% block content %}
 <body>
-
-<title>{{ title }}</title>
-
 <div class="container mt-3">
 <form method="POST" enctype=multipart/form-data>
 <div class="container">
@@ -96,4 +69,6 @@
 </form>
 </div>
 </body>
+
+{% endblock %}
 </html>

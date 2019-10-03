@@ -3,11 +3,12 @@ import os, time, json, shutil
 from datetime import datetime, timedelta
 from dateutil import parser
 
+from app import SESSION_TRACKER
 
 def delete_session_files():
-    if os.path.exists(os.path.join(os.getcwd(), 'session_tracker')):
+    if os.path.exists(os.path.join(os.getcwd(), SESSION_TRACKER)):
         files_to_be_deleted = []
-        with open(os.path.join(os.getcwd(), 'session_tracker'), 'r+') as json_file:
+        with open(os.path.join(os.getcwd(), SESSION_TRACKER), 'r+') as json_file:
             session = json.load(json_file)
             for each_session in session:
                 if datetime.now() - timedelta(hours=2) < parser.parse(session[each_session]['created_time']) < datetime.now() - timedelta(hours=1):
