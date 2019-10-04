@@ -3,5 +3,4 @@ __pycache__
 .vscode
 *.zip
 static_assets
-app_1.py
 session_tracker.json
