@@ -97,7 +97,7 @@ def main():
 
     # if request method is not POST
     else:
-        return render_template('WebVR_BuildingTour_FE.html')
+        return render_template('WebVR_BuildingTour_FE.html', tour_generated=False)
 
 
 def before_request():

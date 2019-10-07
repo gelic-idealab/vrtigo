@@ -1,9 +1,18 @@
 <head>
 <meta charset="UTF-8">
-
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script>
+        $(window).on("load", function(){
+             tour_generated = $("#tour_generated").html()
+             if(tour_generated!='False'){
+                 $("input").each(function () {
+                     if(!$(this).hasClass('btn'))
+                        $(this).attr("disabled", "disabled");
+                 });
+             }
+        });
+    </script>
 </head>
-
-
 {% extends 'base.html' %}
 {% block content %}
 <body>
@@ -11,7 +20,7 @@
     {% if error %}
         <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
-
+<div style="display:none" id="tour_generated">{{ tour_generated }}</div>
 <div class="container mt-3">
 <form method="POST" enctype=multipart/form-data>
 <div class="container">
@@ -53,19 +62,19 @@
         <div class="col-sm">
             <div class="form-group input-group-lg">
                 <label class="lead" for="rows">Rows:</label>
-                <input type="text" class="form-control" name="grid_row" id="rows" required="required" value="{{ grid_row }}">
+                <input type="number" min="1" class="form-control" name="grid_row" id="rows" required="required" value="{{ grid_row }}" >
             </div>
         </div>
         <div class="col-sm">
             <div class="form-group input-group-lg">
                 <label class="lead" for="columns">Columns:</label>
-                <input type="text" class="form-control" name="grid_column" id="columns" required="required" value="{{ grid_column }}">
+                <input type="number" min="1" class="form-control" name="grid_column" id="columns" required="required" value="{{ grid_column }}" >
             </div>
         </div>
         <div class="col-sm">
             <div class="form-group input-group-lg">
                 <label class="lead" for="file">Upload a photo zip file:</label>
-                <input type="file" class="form-control-file" name="grid_location" id="file" required="required" value="{{ grid_location }}",  accept=".zip">
+                <input type="file" class="form-control-file" name="grid_location" id="file" required="required" value="{{ grid_location }}",  accept=".zip" >
             </div>
         </div>
         </div>
