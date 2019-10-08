@@ -10,7 +10,11 @@
                         $(this).attr("disabled", "disabled");
                  });
              }
+             $($("#vr_tour_form")[0]).submit(function(){
+               $($("#PleaseWait")[0]).show()
+            });
         });
+
     </script>
 </head>
 {% extends 'base.html' %}
@@ -20,9 +24,11 @@
     {% if error %}
         <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
+    <div id="overlay" class="ui-widget-overlay" style="z-index: 1001; display: none;"></div>
+    <div id ='PleaseWait'><img src='static/spinner.gif' style="display: none;"/></div>
 <div style="display:none" id="tour_generated">{{ tour_generated }}</div>
 <div class="container mt-3">
-<form method="POST" enctype=multipart/form-data>
+<form method="POST" enctype=multipart/form-data id="vr_tour_form">
 <div class="container">
     <div class="jumbotron" align="center">
             <h1 class="display-3" align="center">VR Tour Generator</h1>
