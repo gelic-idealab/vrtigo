@@ -3,6 +3,8 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script>
         $(window).on("load", function(){
+            $($("#PleaseWait")[0]).hide()
+            $($("#overlay")[0]).hide()
              tour_generated = $("#tour_generated").html()
              if(tour_generated!='False'){
                  $("input").each(function () {
@@ -10,13 +12,35 @@
                         $(this).attr("disabled", "disabled");
                  });
              }
-             $($("#vr_tour_form")[0]).submit(function(){
-               $($("#PleaseWait")[0]).show()
-               $($("#overlay")[0]).show()
-            });
         });
-
+        function onSubmit() {
+            $($("#PleaseWait")[0]).show()
+            $($("#overlay")[0]).show()
+        }
     </script>
+    <style>
+        #PleaseWait {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-left: -50px; /* half width of the spinner gif */
+            margin-top: -50px; /* half height of the spinner gif */
+            text-align:center;
+            z-index:1234;
+            overflow: auto;
+            width: auto; /* width of the spinner gif */
+            height: auto; /*height of the spinner gif +2px to fix IE8 issue */
+        }
+        #overlay {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,.5);
+            opacity: .5;
+    }
+    </style>
 </head>
 {% extends 'base.html' %}
 {% block content %}
@@ -25,11 +49,11 @@
     {% if error %}
         <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
-    <div id="overlay" class="ui-widget-overlay" style="z-index: 1001; display: none;"></div>
-    <div id ='PleaseWait'><img src='static/spinner.gif' style="display: none;"/></div>
+    <div id="overlay" class="ui-widget-overlay" style="z-index: 1001;"></div>
+    <div id ='PleaseWait'><img src='static/spinner.gif'/></div>
 <div style="display:none" id="tour_generated">{{ tour_generated }}</div>
 <div class="container mt-3">
-<form method="POST" enctype=multipart/form-data id="vr_tour_form">
+<form method="POST" enctype=multipart/form-data id="vr_tour_form" onsubmit="onSubmit()">
 <div class="container">
     <div class="jumbotron" align="center">
             <h1 class="display-3" align="center">VR Tour Generator</h1>
