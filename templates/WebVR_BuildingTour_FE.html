@@ -39,7 +39,23 @@
             height: 100vh;
             background: rgba(0,0,0,.5);
             opacity: .5;
-    }
+        }
+
+        li {
+            margin-top: 15px!important;
+        }
+        .column {
+          float: left;
+          width: 50%;
+          padding: 20px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
     </style>
 </head>
 {% extends 'base.html' %}
@@ -55,15 +71,36 @@
 <div class="container mt-3">
 <form method="POST" enctype=multipart/form-data id="vr_tour_form" onsubmit="onSubmit()">
 <div class="container">
-    <div class="jumbotron" align="center">
+    <div class="jumbotron">
+        <div align="center">
             <h1 class="display-3" align="center">VR Tour Generator</h1>
             <p class="lead" align="center"> Use this form to create a VR Tour from a directory of 360 photos. Please make sure to follow the directions.</p>
             <hr class="my-4">
             <p>This tool was created by the Grainger Engineering Library IDEA Lab as part of the Immersive Scholars Grant.</p>
             <br>
             <a class="btn btn-info btn-lg" href="#" role="button">Learn more</a>
-
+        </div>
+        <br>
+        <h2>Instructions:</h2>
+        <div class="row">
+            <div class="column">
+                <ol>
+                    <li>1. Divide the entire area for which the web tour needs to be created as a mxn grid.</li>
+                    <li>2. Capture images using a 360 camera as shown in the gif below.
+                        (Note: Always keep the orientation of the camera same and maintain the order as shown.)
+                    </li>
+                    <li>3. Create a zip file of the images and enter all the information in the form below.</li>
+                    <li>4. Click on the Preview button to view the tour created.
+                        The download button downloads the created package as a zip file.
+                    </li>
+                </ol>
+            </div>
+            <div class="column">
+                <img src = 'static/Instruction.gif'/><br><br>
+            </div>
+        </div>
     </div>
+
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul class=flashes>
