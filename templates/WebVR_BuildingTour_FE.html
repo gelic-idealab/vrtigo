@@ -3,8 +3,8 @@
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script>
         $(window).on("load", function(){
-            $($("#PleaseWait")[0]).hide()
-            $($("#overlay")[0]).hide()
+           $($("#PleaseWait")[0]).hide()
+           $($("#overlay")[0]).hide()
              tour_generated = $("#tour_generated").html()
              if(tour_generated!='False'){
                  $("input").each(function () {
@@ -21,8 +21,8 @@
     <style>
         #PleaseWait {
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 45%;
+            left: 45%;
             margin-left: -50px; /* half width of the spinner gif */
             margin-top: -50px; /* half height of the spinner gif */
             text-align:center;
@@ -32,17 +32,17 @@
             height: auto; /*height of the spinner gif +2px to fix IE8 issue */
         }
         #overlay {
-            position: absolute;
+            position: fixed;
             top:0;
             left:0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background: rgba(0,0,0,.5);
             opacity: .5;
         }
 
         li {
-            margin-top: 15px!important;
+            margin-top: 2px!important;
         }
         .column {
           float: left;
@@ -66,7 +66,7 @@
         <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
     <div id="overlay" class="ui-widget-overlay" style="z-index: 1001;"></div>
-    <div id ='PleaseWait'><img src='static/spinner.gif'/></div>
+    <div id ='PleaseWait'><img src='static/loader.gif'/></div>
 <div style="display:none" id="tour_generated">{{ tour_generated }}</div>
 <div class="container mt-3">
 <form method="POST" enctype=multipart/form-data id="vr_tour_form" onsubmit="onSubmit()">
@@ -85,13 +85,13 @@
         <div class="row">
             <div class="column">
                 <ol>
-                    <li>1. Divide the entire area for which the web tour needs to be created as a mxn grid.</li>
-                    <li>2. Capture images using a 360 camera as shown in the gif below.
-                        (Note: Always keep the orientation of the camera same and maintain the order as shown.)
-                    </li>
-                    <li>3. Create a zip file of the images and enter all the information in the form below.</li>
-                    <li>4. Click on the Preview button to view the tour created.
-                        The download button downloads the created package as a zip file.
+                    <li>1. Divide the entire area for which the web tour needs to be created as a grid of rows and columns.</li>
+                    <li>2. Capture images using a 360 camera as shown in the gif on the right. </li>
+                    <li><b>(Note: Always keep the orientation of the camera same and maintain the order as shown.)</b></li>
+                    <li>3. Create a zip file of the 360 images.</li>
+                    <li>4. Fill in the form below with the specifications of rows, columns and upload the zip file. </li>
+                    <li>5. Click on the Generate Tour button to create the tour.</li>
+                    <li>6. Click on the Preview button to view the tour created or the download button to download the created package as a zip file.
                     </li>
                 </ol>
             </div>
