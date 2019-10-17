@@ -42,7 +42,7 @@
         }
 
         li {
-            margin-top: 2px!important;
+            margin-top: 5px!important;
         }
         .column {
           float: left;
@@ -55,6 +55,16 @@
           content: "";
           display: table;
           clear: both;
+        }
+
+        .instruction {
+            width: 70%;
+        }
+
+        @media screen and (max-width: 600px) {
+          .column {
+            width: 100%;
+          }
         }
     </style>
 </head>
@@ -97,7 +107,7 @@
                 </ol>
             </div>
             <div class="column">
-                <img src = 'static/Instruction.gif'/><br><br>
+                <center><img class="instruction" src = 'static/Instruction.gif'/></center><br><br>
             </div>
         </div>
     </div>
