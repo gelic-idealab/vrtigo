@@ -19,4 +19,4 @@ The procedure of implementing a systematic input for the tour is as follows:
                     </li>
                 </ol>
 
-Click on the link <a href="">here</a> to view an example tour created using this application.
+Click on the link <a href="http://idealab-vr-tour.surge.sh/">here</a> to view an example tour created using this application.
